@@ -1,9 +1,12 @@
 from fastapi import FastAPI
 from app.schemas import WallRequest
 from app.planner import generate_coverage_path
+from app.database import engine
+from app import models
 
 
 app = FastAPI()
+models.Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def root():
