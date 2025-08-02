@@ -1,0 +1,44 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+
+# SQLite database file
+*.db
+*.sqlite3
+coverage.db
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# VSCode settings
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy and other tooling
+.mypy_cache/
+.dmypy.json
+.pyre/
+
+# Logs
+*.log
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Python-related backup files
+*.bak
+*.swp
+*~
+
+# Environment variables
+.env
+.env.*
