@@ -91,8 +91,28 @@ def get_trajectory(trajectory_id: int, db: Session = Depends(get_db)):
         "points": json.loads(trajectory.points)
     }
 
-
 @app.post("/plan")
+def generate_plan(req: WallRequest, db: Session = Depends(get_db)):
+    path = generate_coverage_path(req.width, req.height, obstacles=req.obstacles)
+
+    trajectory = models.Trajectory(
+        name=f"run_{datetime.datetime.now().isoformat()}",
+        width=req.width,
+        height=req.height,
+        points=json.dumps(path),
+        total_length_m=calculate_length(path)
+    )
+
+    db.add(trajectory)
+    db.commit()
+    db.refresh(trajectory)
+
+    return {
+        "trajectory_id": trajectory.id,
+        "path_preview": path[:10],
+        "total_points": len(path)
+    }
+
 
 def calculate_length(path: list[tuple]) -> float:
     if len(path) < 2:

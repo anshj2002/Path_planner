@@ -1,8 +1,8 @@
 def is_in_obstacle(x, y, obstacles):
     for obs in obstacles:
         if (
-            obs["x"] <= x <= obs["x"] + obs["width"]
-            and obs["y"] <= y <= obs["y"] + obs["height"]
+            obs.x <= x <= obs.x + obs.width and
+            obs.y <= y <= obs.y + obs.height
         ):
             return True
     return False

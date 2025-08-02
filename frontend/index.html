@@ -1,0 +1,22 @@
+<div id="app">
+    <form id="planner-form">
+        <label>
+            Wall Width (m):
+            <input type="number" id="width" name="width" step="0.1" required>
+        </label>
+        <br><br>
+        <label>
+            Wall Height (m):
+            <input type="number" id="height" name="height" step="0.1" required>
+        </label>
+        <br><br>
+        <label>
+            Obstacles (JSON format):
+            <textarea id="obstacles" name="obstacles" placeholder='[{"x":1,"y":1,"width":1,"height":1}]' rows="4" cols="50"></textarea>
+        </label>
+        <br><br>
+        <button type="submit">Generate Coverage Path</button>
+    </form>
+
+    <div id="result"></div>
+</div>
