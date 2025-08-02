@@ -74,7 +74,8 @@ def calculate_length(path: list[tuple]) -> float:
     )
 
 def generate_plan(req: WallRequest, db: Session = Depends(get_db)):
-    path = generate_coverage_path(req.width, req.height)
+    path = generate_coverage_path(req.width, req.height, obstacles=req.obstacles)
+
 
     trajectory = models.Trajectory(
         name=f"run_{datetime.datetime.now().isoformat()}",
