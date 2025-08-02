@@ -10,6 +10,10 @@ import json
 import datetime
 import time
 import logging
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 
 def get_db():
@@ -24,6 +28,13 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):

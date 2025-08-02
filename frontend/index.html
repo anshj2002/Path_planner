@@ -1,22 +1,146 @@
-<div id="app">
-    <form id="planner-form">
-        <label>
-            Wall Width (m):
-            <input type="number" id="width" name="width" step="0.1" required>
-        </label>
-        <br><br>
-        <label>
-            Wall Height (m):
-            <input type="number" id="height" name="height" step="0.1" required>
-        </label>
-        <br><br>
-        <label>
-            Obstacles (JSON format):
-            <textarea id="obstacles" name="obstacles" placeholder='[{"x":1,"y":1,"width":1,"height":1}]' rows="4" cols="50"></textarea>
-        </label>
-        <br><br>
-        <button type="submit">Generate Coverage Path</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall Coverage Path Planner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🤖 Wall Coverage Path Planner</h1>
+            <p>Plan optimal painting paths for rectangular walls</p>
+        </header>
 
-    <div id="result"></div>
-</div>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h2>📏 Wall Configuration</h2>
+                
+                <form id="wall-form" class="form-card">
+                    <div class="input-group">
+                        <label for="width">Wall Width (meters):</label>
+                        <input type="number" id="width" step="0.1" value="5.0" min="1" max="20" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="height">Wall Height (meters):</label>
+                        <input type="number" id="height" step="0.1" value="5.0" min="1" max="20" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="stripe-width">Stripe Width (meters):</label>
+                        <input type="number" id="stripe-width" step="0.01" value="0.25" min="0.1" max="1.0" required>
+                        <small>Width of each painting stripe (default: 25cm)</small>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="obstacles">Obstacles (windows, doors):</label>
+                        <textarea id="obstacles" placeholder='[{"x":2,"y":2,"width":0.25,"height":0.25}]'></textarea>
+                        <small>JSON format: x, y are positions; width, height are dimensions</small>
+                    </div>
+                    
+                    <button type="submit" class="generate-btn">🎯 Generate Coverage Path</button>
+                </form>
+            </div>
+
+            <!-- Visualization Section -->
+            <div class="visualization-section">
+                <h2>🎨 Path Visualization</h2>
+                
+                <!-- Loading indicator -->
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <p>Generating optimal path...</p>
+                </div>
+                
+                <!-- Canvas for drawing -->
+                <div class="canvas-container">
+                    <canvas id="canvas" width="600" height="400"></canvas>
+                    <div class="canvas-legend">
+                        <div class="legend-item">
+                            <span class="legend-color wall-color"></span>
+                            <span>Wall Boundary</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color obstacle-color"></span>
+                            <span>Obstacles</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color path-color"></span>
+                            <span>Coverage Path</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color robot-color"></span>
+                            <span>Current Position</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Playback Controls -->
+                <div id="playback-controls" class="playback-controls hidden">
+                    <button id="play-btn" class="control-btn">▶️ Play</button>
+                    <button id="pause-btn" class="control-btn hidden">⏸️ Pause</button>
+                    <button id="reset-btn" class="control-btn">🔄 Reset</button>
+                    <div class="progress-container">
+                        <input type="range" id="progress-slider" class="progress-slider" min="0" max="100" value="0">
+                        <div class="progress-info">
+                            <span id="current-point">Point: 0</span>
+                            <span id="total-points">Total: 0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information Panel -->
+        <div class="info-panel">
+            <div class="stats-section">
+                <h3>📊 Path Statistics</h3>
+                <div id="stats" class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Distance:</span>
+                        <span id="total-distance">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Number of Points:</span>
+                        <span id="point-count">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Coverage Area:</span>
+                        <span id="coverage-area">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Efficiency:</span>
+                        <span id="efficiency">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="explanation-section">
+                <h3>🧠 Algorithm Explanation</h3>
+                <div id="explanation" class="explanation-content">
+                    <p>Click "Generate Coverage Path" to see how the Boustrophedon algorithm works!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trajectory Management -->
+        <div class="trajectory-section">
+            <h2>💾 Saved Trajectories</h2>
+            <div class="trajectory-controls">
+                <select id="trajectory-select" class="trajectory-select">
+                    <option value="">Select a saved trajectory...</option>
+                </select>
+                <button id="load-btn" class="control-btn">📂 Load</button>
+                <button id="delete-btn" class="control-btn delete-btn">🗑️ Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
