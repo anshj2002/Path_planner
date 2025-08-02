@@ -1,11 +1,10 @@
-# Byte-compiled / optimized / DLL files
+
 __pycache__/
 *.py[cod]
 *.so
 *.pyd
 *.pyo
 
-# SQLite database file
 *.db
 *.sqlite3
 coverage.db
