@@ -62,3 +62,16 @@ def generate_plan(req: WallRequest, db: Session = Depends(get_db)):
         "path_preview": path[:10],
         "total_points": len(path)
     }
+@app.get("/trajectories")
+def list_trajectories(db: Session = Depends(get_db)):
+    results = db.query(models.Trajectory).all()
+    return [
+        {
+            "id": traj.id,
+            "name": traj.name,
+            "width": traj.width,
+            "height": traj.height,
+            "point_count": len(json.loads(traj.points))
+        }
+        for traj in results
+    ]
