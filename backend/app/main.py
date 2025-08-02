@@ -46,6 +46,35 @@ async def log_requests(request: Request, call_next):
 def root():
     return {"message": "Wall Coverage API running"}
 
+@app.delete("/trajectory/{trajectory_id}")
+def delete_trajectory(trajectory_id: int, db: Session = Depends(get_db)):
+    traj = db.query(models.Trajectory).filter(models.Trajectory.id == trajectory_id).first()
+    if not traj:
+        raise HTTPException(status_code=404, detail="Trajectory not found")
+
+    db.delete(traj)
+    db.commit()
+    return {"detail": f"Trajectory {trajectory_id} deleted successfully"}
+
+@app.get("/trajectories/filter/")
+def filter_trajectories(width: float = None, height: float = None, db: Session = Depends(get_db)):
+    query = db.query(models.Trajectory)
+    if width is not None:
+        query = query.filter(models.Trajectory.width == width)
+    if height is not None:
+        query = query.filter(models.Trajectory.height == height)
+
+    return [
+        {
+            "id": t.id,
+            "name": t.name,
+            "width": t.width,
+            "height": t.height,
+            "point_count": len(json.loads(t.points)),
+            "total_length_m": t.total_length_m
+        }
+        for t in query.all()
+    ]
 
 
 @app.get("/trajectory/{trajectory_id}")
