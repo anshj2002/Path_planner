@@ -8,6 +8,8 @@ from sqlalchemy.orm import Session
 from app import models, database
 import json
 import datetime
+from fastapi import HTTPException
+
 
 def get_db():
     db = database.SessionLocal()
@@ -24,6 +26,21 @@ models.Base.metadata.create_all(bind=engine)
 @app.get("/")
 def root():
     return {"message": "Wall Coverage API running"}
+
+@app.get("/trajectory/{trajectory_id}")
+def get_trajectory(trajectory_id: int, db: Session = Depends(get_db)):
+    trajectory = db.query(models.Trajectory).filter(models.Trajectory.id == trajectory_id).first()
+    if not trajectory:
+        raise HTTPException(status_code=404, detail="Trajectory not found")
+
+    return {
+        "id": trajectory.id,
+        "name": trajectory.name,
+        "width": trajectory.width,
+        "height": trajectory.height,
+        "points": json.loads(trajectory.points)
+    }
+
 
 @app.post("/plan")
 def generate_plan(req: WallRequest, db: Session = Depends(get_db)):
