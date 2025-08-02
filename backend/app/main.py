@@ -64,6 +64,15 @@ def get_trajectory(trajectory_id: int, db: Session = Depends(get_db)):
 
 
 @app.post("/plan")
+
+def calculate_length(path: list[tuple]) -> float:
+    if len(path) < 2:
+        return 0.0
+    return sum(
+        ((path[i][0] - path[i - 1][0])**2 + (path[i][1] - path[i - 1][1])**2)**0.5
+        for i in range(1, len(path))
+    )
+
 def generate_plan(req: WallRequest, db: Session = Depends(get_db)):
     path = generate_coverage_path(req.width, req.height)
 
@@ -71,8 +80,10 @@ def generate_plan(req: WallRequest, db: Session = Depends(get_db)):
         name=f"run_{datetime.datetime.now().isoformat()}",
         width=req.width,
         height=req.height,
-        points=json.dumps(path)  
+        points=json.dumps(path),
+        total_length_m=calculate_length(path)
     )
+
 
     db.add(trajectory)
     db.commit()
