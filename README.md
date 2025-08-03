@@ -20,7 +20,7 @@
 
 <table>
 <tr>
-
+<td>
 
 🧠 **Smart Path Planning**  
 Generates efficient back-and-forth coverage paths that minimize wasted movement
@@ -37,8 +37,7 @@ Real-time metrics for distance, coverage area, and efficiency optimization
 💾 **Trajectory Management**  
 Save, load, and manage different wall configurations with ease
 
-
-
+</td>
 </tr>
 </table>
 
@@ -47,7 +46,6 @@ Save, load, and manage different wall configurations with ease
 <div align="center">
 
 ### 🎥 See It In Action
-
 
 **[🔥 Try the Live Demo →](https://lovely-halva-fae3a4.netlify.app/)**
 
@@ -97,7 +95,8 @@ uvicorn app.main:app --reload
 
 ```bash
 # 4️⃣ Frontend ready! (open in new terminal)
- simply visit https://lovely-halva-fae3a4.netlify.app/ and make your request from there
+# Simply visit https://lovely-halva-fae3a4.netlify.app/ and make your request from there
+```
 
 > **Windows Users**: Replace `source venv/bin/activate` with `venv\Scripts\activate`
 
@@ -184,7 +183,6 @@ Continue → ══════════════════════�
 
 </div>
 
-
 ## 🌈 Future Roadmap
 
 - [ ] 🎨 Multiple brush patterns support
@@ -200,10 +198,6 @@ Continue → ══════════════════════�
 
 **Love this project? Join the community!**
 
-[![Contributors](https://img.shields.io/github/contributors/anshj2002/Path_planner?style=for-the-badge&color=orange&labelColor=black)](https://github.com/anshj2002/Path_planner/graphs/contributors)
-[![Issues](https://img.shields.io/github/issues/anshj2002/Path_planner?style=for-the-badge&color=red&labelColor=black)](https://github.com/anshj2002/Path_planner/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/anshj2002/Path_planner?style=for-the-badge&color=blue&labelColor=black)](https://github.com/anshj2002/Path_planner/pulls)
-
 </div>
 
 1. 🍴 **Fork** the repository
@@ -217,7 +211,6 @@ Continue → ══════════════════════�
 - 🙏 Inspired by robotic path planning algorithms
 - 🎨 UI/UX design influenced by modern data visualization tools
 - 🧮 Mathematical foundations from computational geometry
-
 
 <div align="center">
 
