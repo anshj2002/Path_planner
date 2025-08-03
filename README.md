@@ -20,7 +20,7 @@
 
 <table>
 <tr>
-<td>
+
 
 🧠 **Smart Path Planning**  
 Generates efficient back-and-forth coverage paths that minimize wasted movement
@@ -37,7 +37,7 @@ Real-time metrics for distance, coverage area, and efficiency optimization
 💾 **Trajectory Management**  
 Save, load, and manage different wall configurations with ease
 
-</td>
+
 
 </tr>
 </table>
@@ -185,20 +185,6 @@ Continue → ══════════════════════�
 
 </div>
 
-## 🎨 Screenshots
-
-<div align="center">
-
-### 🖥️ Main Interface
-*Add screenshot of your main interface here*
-
-### 📊 Analytics Dashboard
-*Add screenshot of analytics/metrics view*
-
-### 🎬 Path Animation
-*Add GIF of path generation animation*
-
-</div>
 
 ## 🌈 Future Roadmap
 
