@@ -38,23 +38,7 @@ Real-time metrics for distance, coverage area, and efficiency optimization
 Save, load, and manage different wall configurations with ease
 
 </td>
-<td>
 
-```ascii
-╭─────────────────────╮
-│  ╭─╮    ╭─╮    ╭─╮  │
-│  │ │    │ │    │ │  │ ← Windows
-│  ╰─╯    ╰─╯    ╰─╯  │
-│                     │
-│  ═══════════════════ │ ← Painting Path
-│  ═══════════════════ │
-│                     │
-│       ╭─────╮       │ ← Door
-│       │     │       │
-╰───────┴─────┴───────╯
-```
-
-</td>
 </tr>
 </table>
 
@@ -63,7 +47,7 @@ Save, load, and manage different wall configurations with ease
 <div align="center">
 
 ### 🎥 See It In Action
-*Add your demo GIF here*
+
 
 **[🔥 Try the Live Demo →](https://lovely-halva-fae3a4.netlify.app/)**
 
