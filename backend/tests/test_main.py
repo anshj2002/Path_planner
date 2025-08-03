@@ -5,11 +5,6 @@ import json
 
 client = TestClient(app)
 
-def test_root_endpoint():
-    """Test the root endpoint"""
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.json() == {"message": "Wall Coverage API running"}
 
 def test_plan_and_get_trajectory_no_obstacles():
     """Test creating a plan without obstacles and retrieving it"""

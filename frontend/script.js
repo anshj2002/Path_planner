@@ -536,14 +536,14 @@ async function loadSelectedTrajectory() {
 
         // Update global variables
         currentPath = trajectory.points;
-        currentObstacles = [];
+        currentObstacles = trajectory.obstacles || [];  // Update this line
         wallDimensions = { width: trajectory.width, height: trajectory.height };
 
         // Update form inputs
         const elements = {
             'width': trajectory.width,
             'height': trajectory.height,
-            'obstacles': ''
+            'obstacles': trajectory.obstacles ? JSON.stringify(trajectory.obstacles) : '[]'  // Update this line
         };
 
         Object.entries(elements).forEach(([id, value]) => {
