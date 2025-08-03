@@ -97,8 +97,7 @@ uvicorn app.main:app --reload
 
 ```bash
 # 4️⃣ Frontend ready! (open in new terminal)
-cd ../frontend && open index.html
-```
+ simply visit https://lovely-halva-fae3a4.netlify.app/ and make your request from there
 
 > **Windows Users**: Replace `source venv/bin/activate` with `venv\Scripts\activate`
 
@@ -219,28 +218,6 @@ Continue → ══════════════════════�
 - 🎨 UI/UX design influenced by modern data visualization tools
 - 🧮 Mathematical foundations from computational geometry
 
-## 📄 License
-
-<div align="center">
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
-
-</div>
-
-## 📬 Connect With Me
-
-<div align="center">
-
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anshj2002)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/anshj2002)
-[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/anshj2002)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your.email@example.com)
-
-</div>
-
----
 
 <div align="center">
 
