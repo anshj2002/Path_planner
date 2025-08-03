@@ -11,6 +11,7 @@ class Trajectory(Base):
     width = Column(Float, index=True)
     height = Column(Float, index=True)
     points = Column(String)  # JSON-encoded list of (x, y)
+    obstacles = Column(String)  # Add this line to store obstacles
     total_length_m = Column(Float)
     created_at = Column(DateTime, default=datetime.utcnow, index=True)
 
